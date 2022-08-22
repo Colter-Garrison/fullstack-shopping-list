@@ -44,7 +44,7 @@ describe('users', () => {
     });
   });
 
-  it.skip('returns the current user', async () => {
+  it('returns the current user', async () => {
     const [agent, user] = await registerAndLogin();
     const me = await agent.get('/api/v1/users/me');
     expect(me.body).toEqual({
@@ -54,7 +54,7 @@ describe('users', () => {
     });
   });
 
-  it.skip('DELETE /sessions deletes the user session', async () => {
+  it('DELETE /sessions deletes the user session', async () => {
     const [agent] = await registerAndLogin();
     const resp = await agent.delete('/api/v1/users/sessions');
     expect(resp.status).toBe(204);
