@@ -45,7 +45,7 @@ describe('items', () => {
     const [agent, user] = await registerAndLogin();
     const newItem = { description: 'eggs', qty: 12 };
     const resp = await agent.post('/api/v1/items').send(newItem);
-    // expect(resp.status).toEqual(200);
+    expect(resp.status).toEqual(200);
     expect(resp.body).toEqual({
       id: expect.any(String),
       description: newItem.description,
@@ -55,7 +55,7 @@ describe('items', () => {
     });
   });
 
-  it.skip('GET /api/v1/items returns all items associated with the authenticated User', async () => {
+  it('GET /api/v1/items returns all items associated with the authenticated User', async () => {
     // create a user
     const [agent, user] = await registerAndLogin();
     // add a second user with items
