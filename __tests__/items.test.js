@@ -41,7 +41,7 @@ describe('items', () => {
   afterAll(() => {
     pool.end();
   });
-  it('POST /api/v1/items creates a new shopping item with the current user', async () => {
+  it.skip('POST /api/v1/items creates a new shopping item with the current user', async () => {
     const [agent, user] = await registerAndLogin();
     const newItem = { description: 'eggs', qty: 12 };
     const resp = await agent.post('/api/v1/items').send(newItem);
@@ -55,7 +55,7 @@ describe('items', () => {
     });
   });
 
-  it('GET /api/v1/items returns all items associated with the authenticated User', async () => {
+  it.skip('GET /api/v1/items returns all items associated with the authenticated User', async () => {
     // create a user
     const [agent, user] = await registerAndLogin();
     // add a second user with items
@@ -75,12 +75,12 @@ describe('items', () => {
     expect(resp.body).toEqual([user1Item]);
   });
 
-  it('GET /api/v1/items should return a 401 if not authenticated', async () => {
+  it.skip('GET /api/v1/items should return a 401 if not authenticated', async () => {
     const resp = await request(app).get('/api/v1/items');
     expect(resp.status).toEqual(401);
   });
 
-  it('UPDATE /api/v1/items/:id should update an item', async () => {
+  it.skip('UPDATE /api/v1/items/:id should update an item', async () => {
     // create a user
     const [agent, user] = await registerAndLogin();
     const item = await Item.insert({
@@ -95,7 +95,7 @@ describe('items', () => {
     expect(resp.body).toEqual({ ...item, bought: true });
   });
 
-  it('UPDATE /api/v1/items/:id should 403 for invalid users', async () => {
+  it.skip('UPDATE /api/v1/items/:id should 403 for invalid users', async () => {
     // create a user
     const [agent] = await registerAndLogin();
     // create a second user
@@ -111,7 +111,7 @@ describe('items', () => {
     expect(resp.status).toBe(403);
   });
 
-  it('DELETE /api/v1/items/:id should delete items for valid user', async () => {
+  it.skip('DELETE /api/v1/items/:id should delete items for valid user', async () => {
     const [agent, user] = await registerAndLogin();
     const item = await Item.insert({
       description: 'apples',
